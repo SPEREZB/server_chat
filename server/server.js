@@ -18,10 +18,10 @@ const port = 3001;
 
 //BASE DE DATOS
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "chat",
-  password: "123",
+  user: "sebas",
+  host: "dpg-clpq9urd3o9c73evaoog-a",
+  database: "chat_u2gv",
+  password: "nDn3IRhKuVTBnnZO648iw0nAsgupIZB4",
   port: 5432,
 });
 
