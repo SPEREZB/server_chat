@@ -1,0 +1,3 @@
+[build]
+  command = "npm run build" # Reemplaza con tu comando de construcción
+  functions = "server" # Carpeta que contiene tus funciones serverless
