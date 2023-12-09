@@ -19,7 +19,7 @@ const port = 3001;
 //BASE DE DATOS
 const pool = new Pool({
   connectionString: process.env.POSTGRES_URL + "?sslmode=require",
-})
+}) 
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -77,11 +77,8 @@ app.post("/register", async (req, res) => {
 
 //OBTENER LISTADO DE USUARIOS
 app.get("/users", async (req, res) => {
-  try {
-    // Realiza la consulta a la base de datos
-    const result = await pool.query("SELECT * FROM users");
-
-    // Envia la respuesta en formato JSON
+  try { 
+    const result = await pool.query("SELECT * FROM users"); 
     res.json(result.rows);
   } catch (error) {
     console.error("Error al obtener usuarios:", error);
@@ -104,12 +101,8 @@ app.get("/usersall", async (req, res) => {
 io.on("connection", (socket) => {
   console.log("Usuario conectado:", socket.id);
 
-  socket.on("sendMessage", async (message) => {
-    // Guarda el mensaje en la base de datos
-    console.log("Mensaje recibido en el servidor:", message);
-    await saveMessage(message);
-
-    // Emitir el mensaje a todos los usuarios conectados (si es necesario)
+  socket.on("sendMessage", async (message) => { 
+    await saveMessage(message); 
     io.emit("newMessage", message);
   });
 
@@ -121,20 +114,11 @@ io.on("connection", (socket) => {
     );
     console.log(storedMessages.rows);
     // EMITIMOS LOS MENSAJES ALMACENADOS AL CLIENTE
-    socket.emit("storedMessages", storedMessages.rows);
-    //DEVOLVEMOS MENSAJE POR MENSAJE
-    storedMessages.rows.forEach((message) => {
-      io.emit("newMessage", message);
-    });
+    socket.emit("storedMessages", storedMessages.rows); 
   });
 
   socket.on("userConnected", async (username) => {
-    // RECUPERAR LOS MENSAJES
-    const storedMessages = await pool.query(
-      "SELECT * FROM messages WHERE para = $1",
-      [username]
-    );
-
+    // RECUPERAR LOS MENSAJES 
     usuariosConectados.add(username);
     io.emit("userConnected", obtenerListaDeUsuarios(username));
   });
