@@ -18,7 +18,7 @@ const port = 3001;
 
 //BASE DE DATOS
 const pool = new Pool({
-  connectionString: env.local.POSTGRES_URL + "?sslmode=require",
+  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
 })
 
 app.use(cors());
