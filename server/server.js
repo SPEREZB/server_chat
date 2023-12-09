@@ -18,10 +18,10 @@ const port = 3001;
 
 //BASE DE DATOS
 const pool = new Pool({
-  user: "sebas",
-  host: "dpg-clpq9urd3o9c73evaoog-a",
-  database: "chat_u2gv",
-  password: "nDn3IRhKuVTBnnZO648iw0nAsgupIZB4",
+  user: "default",
+  host: "ep-gentle-thunder-43984048-pooler.us-east-1.postgres.vercel-storage.com",
+  database: "verceldb",
+  password: "VKZYzW8j7lAP",
   port: 5432,
 });
 
