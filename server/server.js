@@ -18,12 +18,8 @@ const port = 3001;
 
 //BASE DE DATOS
 const pool = new Pool({
-  user: "default",
-  host: "ep-gentle-thunder-43984048-pooler.us-east-1.postgres.vercel-storage.com",
-  database: "verceldb",
-  password: "VKZYzW8j7lAP",
-  port: 5432,
-});
+  connectionString: env.local.POSTGRES_URL + "?sslmode=require",
+})
 
 app.use(cors());
 app.use(bodyParser.json());
