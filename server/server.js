@@ -30,7 +30,7 @@ const saveMessage = async (message) => {
 
   try {
     const result = await pool.query(
-      "INSERT INTO messages (para, de, mensaje) VALUES ($1, $2, $3) RETURNING *",
+      "INSERT INTO messages (de, para, mensaje) VALUES ($1, $2, $3) RETURNING *",
       [de, para, mensaje]
     );
 
@@ -118,7 +118,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("userConnected", async (username) => {
-    // RECUPERAR LOS MENSAJES 
+    // RECUPERAR LOS USUARIOS 
     usuariosConectados.add(username);
     io.emit("userConnected", obtenerListaDeUsuarios(username));
   });
